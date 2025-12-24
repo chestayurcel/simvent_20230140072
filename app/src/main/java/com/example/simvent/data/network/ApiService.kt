@@ -34,7 +34,7 @@ interface ApiService {
     @POST("assets/create.php")
     suspend fun createAsset(
         @Header("Authorization") token: String,
-        @Body asset: AssetItem // Kita bisa reuse AssetItem atau buat CreateAssetRequest khusus
+        @Body asset: AssetItem
     ): GeneralResponse
 
     @POST("assets/update.php")
@@ -46,6 +46,31 @@ interface ApiService {
     @POST("assets/delete.php")
     suspend fun deleteAsset(
         @Header("Authorization") token: String,
-        @Body idMap: Map<String, Int> // Kirim {"asset_id": 123}
+        @Body idMap: Map<String, Int>
+    ): GeneralResponse
+
+    // Manajemen Ruangan
+
+    @GET("rooms/read.php")
+    suspend fun getRooms(
+        @Header("Authorization") token: String
+    ): RoomResponse
+
+    @POST("rooms/create.php")
+    suspend fun createRoom(
+        @Header("Authorization") token: String,
+        @Body room: RoomItem
+    ): GeneralResponse
+
+    @POST("rooms/update.php")
+    suspend fun updateRoom(
+        @Header("Authorization") token: String,
+        @Body room: RoomItem
+    ): GeneralResponse
+
+    @POST("rooms/delete.php")
+    suspend fun deleteRoom(
+        @Header("Authorization") token: String,
+        @Body idMap: Map<String, Int>
     ): GeneralResponse
 }
