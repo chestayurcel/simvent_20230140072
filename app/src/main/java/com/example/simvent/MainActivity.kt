@@ -1,6 +1,7 @@
 package com.example.simvent
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -12,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.simvent.ui.theme.SIMVENTTheme
+import com.example.simvent.view.LoginScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,28 +22,18 @@ class MainActivity : ComponentActivity() {
         setContent {
             SIMVENTTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+                    LoginScreen(
+                        modifier = Modifier.padding(innerPadding),
+                        onLoginSuccess = {
+                            Toast.makeText(
+                                this,
+                                "Navigasi ke Dashboard...",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     )
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    SIMVENTTheme {
-        Greeting("Android")
     }
 }
