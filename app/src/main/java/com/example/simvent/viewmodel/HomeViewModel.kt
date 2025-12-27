@@ -18,8 +18,8 @@ sealed interface HomeUiState {
 }
 
 class HomeViewModel(
-    private val assetRepository: AssetRepository,
-    private val authRepository: AuthRepository
+    private val assetRepository: AuthRepository,
+    private val authRepository: AssetRepository
 ) : ViewModel() {
 
     var homeUiState: HomeUiState by mutableStateOf(HomeUiState.Loading)
