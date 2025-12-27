@@ -16,14 +16,12 @@ object ViewModelFactory {
             )
         }
 
-        /*
         initializer {
             HomeViewModel(
                 simventApplication().container.authRepository,
                 simventApplication().container.assetRepository
             )
         }
-        */
     }
 }
 
