@@ -35,7 +35,7 @@ fun DashboardScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("SIMVENT Dashboard") },
+                title = { Text("SIMVENT Dashboard", fontWeight = FontWeight.Bold) },
                 actions = {
                     IconButton(onClick = { viewModel.logout(); onLogout() }) {
                         Icon(Icons.AutoMirrored.Filled.ExitToApp, contentDescription = "Logout")
