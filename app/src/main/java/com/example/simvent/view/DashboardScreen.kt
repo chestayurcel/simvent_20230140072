@@ -68,7 +68,7 @@ fun DashboardScreen(
                 }
                 is DashboardUiState.Success -> {
                     // 1. HEADER
-                    Text("Halo, User!", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                    Text("Halo, Admin!", fontSize = 20.sp, fontWeight = FontWeight.Bold)
                     Text("Berikut ringkasan inventaris Anda:", color = Color.Gray)
 
                     Spacer(modifier = Modifier.height(24.dp))
