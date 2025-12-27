@@ -39,7 +39,7 @@ class DashboardViewModel(
         viewModelScope.launch {
             uiState = DashboardUiState.Loading
             val token = authRepository.getSessionToken()
-            val name = authRepository.getName() ?: "User"
+            val name = authRepository.getName() ?: "Admin"
 
             if (token != null) {
                 try {
