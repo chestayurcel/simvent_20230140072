@@ -80,8 +80,8 @@ fun DashboardScreen(
                     }
                     Spacer(modifier = Modifier.height(8.dp))
                     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        StatCard(title = "Kondisi Baik", count = uiState.goodCondition.toString(), color = Color(0xFF4CAF50), modifier = Modifier.weight(1f))
-                        StatCard(title = "Kondisi Rusak", count = uiState.badCondition.toString(), color = Color(0xFFF44336), modifier = Modifier.weight(1f))
+                        StatCard(title = "Barang Kondisi Baik", count = uiState.goodCondition.toString(), color = Color(0xFF4CAF50), modifier = Modifier.weight(1f))
+                        StatCard(title = "Barang Kondisi Rusak", count = uiState.badCondition.toString(), color = Color(0xFFF44336), modifier = Modifier.weight(1f))
                     }
 
                     Spacer(modifier = Modifier.height(32.dp))
