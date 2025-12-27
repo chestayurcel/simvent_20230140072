@@ -10,19 +10,18 @@ import com.example.simvent.data.repository.AssetRepository
 import com.example.simvent.data.repository.AuthRepository
 import kotlinx.coroutines.launch
 
-// Status Tampilan Home
-sealed interface HomeUiState {
-    object Loading : HomeUiState
-    data class Success(val assets: List<AssetItem>) : HomeUiState
-    data class Error(val message: String) : HomeUiState
+sealed interface AssetUiState {
+    object Loading : AssetUiState
+    data class Success(val assets: List<AssetItem>) : AssetUiState
+    data class Error(val message: String) : AssetUiState
 }
 
-class HomeViewModel(
+class AssetViewModel(
     private val assetRepository: AssetRepository,
     private val authRepository: AuthRepository
 ) : ViewModel() {
 
-    var homeUiState: HomeUiState by mutableStateOf(HomeUiState.Loading)
+    var assetUiState: AssetUiState by mutableStateOf(AssetUiState.Loading)
         private set
 
     init {
@@ -32,7 +31,7 @@ class HomeViewModel(
     // Fungsi Ambil Data
     fun getAssets() {
         viewModelScope.launch {
-            homeUiState = HomeUiState.Loading
+            assetUiState = AssetUiState.Loading
 
             // 1. Ambil Token dulu
             val token = authRepository.getSessionToken()
@@ -41,14 +40,14 @@ class HomeViewModel(
                 // 2. Panggil API getAssets
                 val result = assetRepository.getAssets(token)
 
-                homeUiState = if (result.isSuccess) {
+                assetUiState = if (result.isSuccess) {
                     val assets = result.getOrNull()?.data ?: emptyList()
-                    HomeUiState.Success(assets)
+                    AssetUiState.Success(assets)
                 } else {
-                    HomeUiState.Error(result.exceptionOrNull()?.message ?: "Gagal memuat data")
+                    AssetUiState.Error(result.exceptionOrNull()?.message ?: "Gagal memuat data")
                 }
             } else {
-                HomeUiState.Error("Sesi habis, silakan login ulang")
+                assetUiState = AssetUiState.Error("Sesi habis, silakan login ulang")
             }
         }
     }
