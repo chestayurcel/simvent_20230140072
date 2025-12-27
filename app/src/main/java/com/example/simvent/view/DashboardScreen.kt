@@ -110,8 +110,8 @@ fun StatCard(title: String, count: String, color: Color, modifier: Modifier = Mo
             modifier = Modifier.padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(count, fontSize = 24.sp, fontWeight = FontWeight.Bold, color = color)
-            Text(title, fontSize = 12.sp, color = Color.DarkGray)
+            Text(count, fontSize = 25.sp, fontWeight = FontWeight.Bold, color = color)
+            Text(title, fontSize = 13.sp, color = Color.DarkGray)
         }
     }
 }
