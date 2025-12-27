@@ -1,10 +1,12 @@
 package com.example.simvent.viewmodel
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.simvent.SimventApplication
+import com.example.simvent.di.AppContainer
 
 object ViewModelFactory {
     val Factory = viewModelFactory {
@@ -16,8 +18,8 @@ object ViewModelFactory {
 
         initializer {
             HomeViewModel(
-                simventApplication().container.authRepository,
-                simventApplication().container.assetRepository
+                simventApplication().container.assetRepository,
+                simventApplication().container.authRepository
             )
         }
     }
