@@ -51,11 +51,9 @@ fun NavigationMap(navController: NavHostController) {
         // 3. RUTE ASSET LIST
         composable(Screen.AssetList.route) {
             AssetListScreen(
-                onLogout = {
-                    navController.navigate(Screen.Login.route) {
-                        popUpTo(0)
-                    }
-                }
+                onBack = {
+                    navController.popBackStack()
+                },
             )
         }
 
