@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ExitToApp
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.*
@@ -24,7 +24,7 @@ import com.example.simvent.viewmodel.ViewModelFactory
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AssetListScreen(
-    onLogout: () -> Unit,
+    onBack: () -> Unit,
     modifier: Modifier = Modifier,
     assetViewModel: AssetViewModel = viewModel(factory = ViewModelFactory.Factory)
 ) {
@@ -33,18 +33,19 @@ fun AssetListScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Dashboard Aset") },
+                title = { Text("Daftar Aset") },
+                navigationIcon = {
+                    IconButton(onClick = onBack) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Kembali"
+                        )
+                    }
+                },
                 actions = {
                     // Tombol Refresh
                     IconButton(onClick = { assetViewModel.getAssets() }) {
                         Icon(Icons.Default.Refresh, contentDescription = "Refresh")
-                    }
-                    // Tombol Logout
-                    IconButton(onClick = {
-                        assetViewModel.logout()
-                        onLogout()
-                    }) {
-                        Icon(Icons.AutoMirrored.Filled.ExitToApp, contentDescription = "Logout")
                     }
                 }
             )
