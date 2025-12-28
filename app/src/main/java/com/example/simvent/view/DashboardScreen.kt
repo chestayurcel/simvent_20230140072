@@ -74,19 +74,25 @@ fun DashboardScreen(
                     Spacer(modifier = Modifier.height(24.dp))
 
                     // 2. KARTU STATISTIK (Grid 2x2)
-                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Row(Modifier
+                        .fillMaxWidth()
+                        .height(120.dp),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         StatCard(title = "Total Aset", count = uiState.totalAssets.toString(), color = Color(0xFF2196F3), modifier = Modifier.weight(1f))
                         StatCard(title = "Total Ruangan", count = uiState.totalRooms.toString(), color = Color(0xFFFF9800), modifier = Modifier.weight(1f))
                     }
                     Spacer(modifier = Modifier.height(8.dp))
-                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Row(Modifier
+                        .fillMaxWidth()
+                        .height(120.dp),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         StatCard(title = "Barang Kondisi Baik", count = uiState.goodCondition.toString(), color = Color(0xFF4CAF50), modifier = Modifier.weight(1f))
                         StatCard(title = "Barang Kondisi Rusak", count = uiState.badCondition.toString(), color = Color(0xFFF44336), modifier = Modifier.weight(1f))
                     }
 
                     Spacer(modifier = Modifier.height(32.dp))
 
-                    // 3. MENU UTAMA (Tombol Besar)
+                    // 3. MENU UTAMA
                     Text("Menu Utama", fontSize = 18.sp, fontWeight = FontWeight.Bold)
                     Spacer(modifier = Modifier.height(16.dp))
 
@@ -107,11 +113,14 @@ fun StatCard(title: String, count: String, color: Color, modifier: Modifier = Mo
         colors = CardDefaults.cardColors(containerColor = color.copy(alpha = 0.1f))
     ) {
         Column(
-            modifier = Modifier.padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
-            Text(count, fontSize = 25.sp, fontWeight = FontWeight.Bold, color = color)
-            Text(title, fontSize = 13.sp, color = Color.DarkGray)
+            Text(count, fontSize = 50.sp, fontWeight = FontWeight.Bold, color = color)
+            Text(title, fontSize = 15.sp, color = Color.DarkGray)
         }
     }
 }
