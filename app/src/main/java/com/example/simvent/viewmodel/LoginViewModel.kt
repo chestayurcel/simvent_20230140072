@@ -9,6 +9,13 @@ import com.example.simvent.data.model.LoginRequest
 import com.example.simvent.data.repository.AuthRepository
 import kotlinx.coroutines.launch
 
+sealed interface LoginUiState {
+    object Idle : LoginUiState          // Status awal
+    object Loading : LoginUiState       // Sedang memutar loading spinner
+    data class Success(val message: String) : LoginUiState // Login berhasil
+    data class Error(val message: String) : LoginUiState   // Login gagal
+}
+
 class LoginViewModel(
     private val authRepository: AuthRepository
 ) : ViewModel() {
