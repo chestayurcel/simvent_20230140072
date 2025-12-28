@@ -8,6 +8,7 @@ import com.example.simvent.uicontroller.route.Screen
 import com.example.simvent.view.AssetListScreen
 import com.example.simvent.view.DashboardScreen
 import com.example.simvent.view.LoginScreen
+import com.example.simvent.view.RoomListScreen
 
 @Composable
 fun NavigationMap(navController: NavHostController) {
@@ -36,7 +37,7 @@ fun NavigationMap(navController: NavHostController) {
                     navController.navigate(Screen.AssetList.route)
                 },
                 onNavigateToRooms = {
-                    // Nanti: navController.navigate(Screen.RoomList.route)
+                    navController.navigate(Screen.RoomList.route)
                 },
                 onLogout = {
                     // Kembali ke Login, hapus semua riwayat backstack
@@ -59,10 +60,13 @@ fun NavigationMap(navController: NavHostController) {
         }
 
         // 4. RUTE ROOM LIST
-        /*
         composable(Screen.RoomList.route) {
-             RoomListScreen(...)
+             RoomListScreen(
+                 onBack = { navController.popBackStack() },
+                 onAddRoom = {
+                     // navController.navigate("add_room")
+                 }
+             )
         }
-        */
     }
 }
