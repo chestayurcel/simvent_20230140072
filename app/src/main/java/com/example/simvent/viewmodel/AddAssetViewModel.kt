@@ -56,18 +56,15 @@ class AddAssetViewModel(
 
             if (token != null) {
                 try {
-                    // Siapkan objek aset (ID 0 karena auto-increment)
                     val qtyInt = qty.toIntOrNull() ?: 0
 
-                    // Kita pakai AssetItem (model yg sama dg read) untuk kirim data
-                    // Pastikan API create.php Anda menerima field ini
                     val asset = AssetItem(
                         assetId = 0,
                         assetName = name,
                         qty = qtyInt,
                         unit = unit,
                         condition = condition,
-                        entryDate = "", // Server biasanya otomatis isi tanggal hari ini
+                        entryDate = "",
                         itemDesc = desc,
                         roomId = roomId,
                         roomName = null
