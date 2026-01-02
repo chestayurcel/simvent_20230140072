@@ -6,8 +6,10 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,6 +32,10 @@ fun RoomListScreen(
 ) {
     val uiState = viewModel.uiState
 
+    LaunchedEffect(Unit) {
+        viewModel.getRooms()
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -37,6 +43,11 @@ fun RoomListScreen(
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Kembali")
+                    }
+                },
+                actions = {
+                    IconButton(onClick = { viewModel.getRooms() }) {
+                        Icon(Icons.Default.Refresh, contentDescription = "Refresh Data")
                     }
                 }
             )
