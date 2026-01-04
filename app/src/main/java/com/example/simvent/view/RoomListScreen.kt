@@ -103,16 +103,16 @@ fun RoomCard(
         AlertDialog(
             onDismissRequest = { showDialog = false },
             title = { Text("Hapus Ruangan?") },
-            text = { Text("Yakin menghapus '${room.roomName}'? Aset di dalamnya mungkin ikut terhapus atau kehilangan referensi.") },
+            text = { Text("Yakin hapus ruangan'${room.roomName}'? Aset di dalamnya mungkin ikut terhapus atau kehilangan referensi.") },
             confirmButton = {
                 TextButton(onClick = {
                     viewModel.deleteRoom(room.roomId) {
-                        Toast.makeText(context, "Ruangan dihapus", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Ruangan Berhasil Dihapus", Toast.LENGTH_SHORT).show()
                     }
                     showDialog = false
-                }) { Text("Hapus", color = Color.Red) }
+                }) { Text("Ya", color = Color.Red) }
             },
-            dismissButton = { TextButton(onClick = { showDialog = false }) { Text("Batal") } }
+            dismissButton = { TextButton(onClick = { showDialog = false }) { Text("Tidak") } }
         )
     }
 

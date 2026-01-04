@@ -32,7 +32,7 @@ fun AddRoomScreen(
     // Pantau status: Kalau Success -> Mundur
     LaunchedEffect(uiState) {
         if (uiState is AddRoomUiState.Success) {
-            Toast.makeText(context, "Ruangan berhasil ditambahkan!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Ruangan berhasil ditambahkan", Toast.LENGTH_SHORT).show()
             viewModel.resetState()
             onSuccess()
         }
