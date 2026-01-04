@@ -38,7 +38,7 @@ fun EditAssetScreen(
 
     LaunchedEffect(uiState) {
         if (uiState is EditAssetUiState.Success) {
-            Toast.makeText(context, "Data berhasil diperbarui!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Data Aset Berhasil Diperbarui", Toast.LENGTH_SHORT).show()
             viewModel.resetState()
             onSuccess()
         }
@@ -131,7 +131,7 @@ fun EditAssetScreen(
                     enabled = viewModel.name.isNotEmpty() && viewModel.selectedRoom != null && uiState !is EditAssetUiState.Loading
                 ) {
                     if (uiState is EditAssetUiState.Loading) CircularProgressIndicator(color = MaterialTheme.colorScheme.onPrimary)
-                    else Text("Update Data")
+                    else Text("Simpan")
                 }
             }
         }
