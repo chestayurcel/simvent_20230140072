@@ -165,7 +165,7 @@ fun AddAssetScreen(
                 if (uiState is AddAssetUiState.Loading) {
                     CircularProgressIndicator(color = MaterialTheme.colorScheme.onPrimary)
                 } else {
-                    Text("Simpan Data")
+                    Text("Simpan")
                 }
             }
         }
