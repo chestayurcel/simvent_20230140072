@@ -2,13 +2,16 @@ package com.example.simvent.uicontroller
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.example.simvent.uicontroller.route.Screen
 import com.example.simvent.view.AddAssetScreen
 import com.example.simvent.view.AddRoomScreen
 import com.example.simvent.view.AssetListScreen
 import com.example.simvent.view.DashboardScreen
+import com.example.simvent.view.EditAssetScreen
 import com.example.simvent.view.LoginScreen
 import com.example.simvent.view.RoomListScreen
 
@@ -53,11 +56,12 @@ fun NavigationMap(navController: NavHostController) {
         // 3. RUTE ASSET LIST
         composable(Screen.AssetList.route) {
             AssetListScreen(
-                onBack = {
-                    navController.popBackStack()
-                },
+                onBack = { navController.popBackStack() },
                 onAddAsset = {
                     navController.navigate(Screen.AddAsset.route)
+                },
+                onEditAsset = { assetId ->
+                    navController.navigate("edit_asset/$assetId")
                 }
             )
         }
@@ -67,13 +71,28 @@ fun NavigationMap(navController: NavHostController) {
             AddAssetScreen(
                 onBack = { navController.popBackStack() },
                 onSuccess = {
-                    // Mundur ke list & otomatis refresh (karena LaunchedEffect)
+                    // Mundur ke list & otomatis refresh
                     navController.popBackStack()
                 }
             )
         }
 
-        // 5. RUTE ROOM LIST
+        // 5. RUTE EDIT ASSET
+        composable(
+            route = Screen.EditAsset.route,
+            arguments = listOf(navArgument("assetId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            // Ambil ID dari URL
+            val id = backStackEntry.arguments?.getInt("assetId") ?: 0
+
+            EditAssetScreen(
+                assetId = id,
+                onBack = { navController.popBackStack() },
+                onSuccess = { navController.popBackStack() }
+            )
+        }
+
+        // 6. RUTE ROOM LIST
         composable(Screen.RoomList.route) {
              RoomListScreen(
                  onBack = { navController.popBackStack() },
@@ -83,7 +102,7 @@ fun NavigationMap(navController: NavHostController) {
              )
         }
 
-        // 6. RUTE ADD ROOM
+        // 7. RUTE ADD ROOM
         composable(Screen.AddRoom.route) {
             AddRoomScreen(
                 onBack = { navController.popBackStack() },
