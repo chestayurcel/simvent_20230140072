@@ -12,6 +12,7 @@ import com.example.simvent.view.AddRoomScreen
 import com.example.simvent.view.AssetListScreen
 import com.example.simvent.view.DashboardScreen
 import com.example.simvent.view.EditAssetScreen
+import com.example.simvent.view.EditRoomScreen
 import com.example.simvent.view.LoginScreen
 import com.example.simvent.view.RoomListScreen
 
@@ -98,7 +99,10 @@ fun NavigationMap(navController: NavHostController) {
                  onBack = { navController.popBackStack() },
                  onAddRoom = {
                      // Pindah ke halaman Add Room
-                     navController.navigate(Screen.AddRoom.route)                 }
+                     navController.navigate(Screen.AddRoom.route) },
+                 onEditRoom = { roomId ->
+                     navController.navigate("edit_room/$roomId") // Pindah ke layar edit
+                 }
              )
         }
 
@@ -110,6 +114,19 @@ fun NavigationMap(navController: NavHostController) {
                     // Kalau sukses, mundur ke list & otomatis refresh
                     navController.popBackStack()
                 }
+            )
+        }
+
+        // 8. RUTE EDIT ROOM
+        composable(
+            route = Screen.EditRoom.route,
+            arguments = listOf(navArgument("roomId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val id = backStackEntry.arguments?.getInt("roomId") ?: 0
+            EditRoomScreen(
+                roomId = id,
+                onBack = { navController.popBackStack() },
+                onSuccess = { navController.popBackStack() } // Kembali ke list
             )
         }
     }
