@@ -5,7 +5,6 @@ import retrofit2.http.*
 
 interface ApiService {
     // Otentikasi
-
     @POST("auth/login.php")
     suspend fun login(
         @Body request: LoginRequest
@@ -22,7 +21,6 @@ interface ApiService {
     ): GeneralResponse
 
     // Manajemen Aset
-
     @GET("assets/read.php")
     suspend fun getAssets(
         @Header("Authorization") token: String,
@@ -50,7 +48,6 @@ interface ApiService {
     ): GeneralResponse
 
     // Manajemen Ruangan
-
     @GET("rooms/read.php")
     suspend fun getRooms(
         @Header("Authorization") token: String
