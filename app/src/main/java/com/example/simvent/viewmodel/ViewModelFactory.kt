@@ -60,6 +60,13 @@ object ViewModelFactory {
                 simventApplication().container.authRepository
             )
         }
+
+        initializer {
+            EditRoomViewModel(
+                simventApplication().container.roomRepository,
+                simventApplication().container.authRepository
+            )
+        }
     }
 }
 
