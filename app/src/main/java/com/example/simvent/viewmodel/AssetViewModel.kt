@@ -6,8 +6,10 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.simvent.data.model.AssetItem
+import com.example.simvent.data.model.RoomItem
 import com.example.simvent.data.repository.AssetRepository
 import com.example.simvent.data.repository.AuthRepository
+import com.example.simvent.data.repository.RoomRepository
 import kotlinx.coroutines.launch
 
 sealed interface AssetUiState {
@@ -18,14 +20,34 @@ sealed interface AssetUiState {
 
 class AssetViewModel(
     private val assetRepository: AssetRepository,
+    private val roomRepository: RoomRepository,
     private val authRepository: AuthRepository
 ) : ViewModel() {
 
     var assetUiState: AssetUiState by mutableStateOf(AssetUiState.Loading)
         private set
 
+    // State untuk filter dan pencarian
+    var searchQuery by mutableStateOf("") // Teks pencarian
+    var selectedFilterRoom: RoomItem? by mutableStateOf(null) // Filter Ruangan
+    var roomList: List<RoomItem> by mutableStateOf(emptyList())
+
     init {
+        loadRooms()
         getAssets()
+    }
+
+    // Ambil daftar ruangan untuk opsi Filter
+    private fun loadRooms() {
+        viewModelScope.launch {
+            val token = authRepository.getSessionToken()
+            if (token != null) {
+                val result = roomRepository.getRooms(token)
+                if (result.isSuccess) {
+                    roomList = result.getOrNull()?.data ?: emptyList()
+                }
+            }
+        }
     }
 
     // Fungsi Ambil Data
@@ -33,12 +55,16 @@ class AssetViewModel(
         viewModelScope.launch {
             assetUiState = AssetUiState.Loading
 
-            // 1. Ambil Token dulu
             val token = authRepository.getSessionToken()
 
             if (token != null) {
-                // 2. Panggil API getAssets
-                val result = assetRepository.getAssets(token)
+                // Kirim parameter search dan roomId ke Repository
+                val result = assetRepository.getAssets(
+                    token = token,
+                    page = 1,
+                    search = if (searchQuery.isBlank()) null else searchQuery,
+                    roomId = selectedFilterRoom?.roomId // Kirim ID ruangan (bisa null)
+                )
 
                 assetUiState = if (result.isSuccess) {
                     val assets = result.getOrNull()?.data ?: emptyList()
@@ -47,9 +73,19 @@ class AssetViewModel(
                     AssetUiState.Error(result.exceptionOrNull()?.message ?: "Gagal memuat data")
                 }
             } else {
-                assetUiState = AssetUiState.Error("Sesi habis, silakan login ulang")
+                assetUiState = AssetUiState.Error("Sesi habis")
             }
         }
+    }
+
+    // Fungsi helper untuk UI
+    fun onSearchQueryChanged(newQuery: String) {
+        searchQuery = newQuery
+    }
+
+    fun onFilterSelected(room: RoomItem?) {
+        selectedFilterRoom = room
+        getAssets()
     }
 
     // Fungsi Hapus Data
