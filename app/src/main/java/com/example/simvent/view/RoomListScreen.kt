@@ -106,9 +106,16 @@ fun RoomCard(
             text = { Text("Yakin hapus ruangan'${room.roomName}'? Aset di dalamnya mungkin ikut terhapus atau kehilangan referensi.") },
             confirmButton = {
                 TextButton(onClick = {
-                    viewModel.deleteRoom(room.roomId) {
-                        Toast.makeText(context, "Ruangan Berhasil Dihapus", Toast.LENGTH_SHORT).show()
-                    }
+                    // UPDATE BAGIAN INI
+                    viewModel.deleteRoom(
+                        id = room.roomId,
+                        onSuccess = {
+                            Toast.makeText(context, "Ruangan Berhasil Dihapus", Toast.LENGTH_SHORT).show()
+                        },
+                        onError = { pesanError ->
+                            Toast.makeText(context, pesanError, Toast.LENGTH_LONG).show()
+                        }
+                    )
                     showDialog = false
                 }) { Text("Ya", color = Color.Red) }
             },

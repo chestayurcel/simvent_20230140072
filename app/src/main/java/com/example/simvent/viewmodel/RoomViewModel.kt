@@ -47,7 +47,7 @@ class RoomViewModel(
         }
     }
 
-    fun deleteRoom(id: Int, onSuccess: () -> Unit) {
+    fun deleteRoom(id: Int, onSuccess: () -> Unit, onError: (String) -> Unit) {
         viewModelScope.launch {
             uiState = RoomUiState.Loading
             val token = authRepository.getSessionToken()
@@ -58,10 +58,11 @@ class RoomViewModel(
                     onSuccess()  // Panggil callback Toast
                     getRooms()   // Refresh data list otomatis
                 } else {
-                    uiState = RoomUiState.Error(result.exceptionOrNull()?.message ?: "Gagal menghapus")
+                    val errorMsg = result.exceptionOrNull()?.message ?: "Gagal menghapus"
+                    onError(errorMsg)
                 }
             } else {
-                uiState = RoomUiState.Error("Sesi habis")
+                onError("Sesi habis")
             }
         }
     }
