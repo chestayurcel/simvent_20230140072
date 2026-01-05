@@ -4,6 +4,8 @@ import com.example.simvent.data.model.GeneralResponse
 import com.example.simvent.data.model.RoomItem
 import com.example.simvent.data.model.RoomResponse
 import com.example.simvent.data.network.ApiService
+import retrofit2.HttpException
+import org.json.JSONObject
 
 class RoomRepository(
     private val apiService: ApiService
@@ -57,12 +59,24 @@ class RoomRepository(
     // 4. Hapus Ruangan
     suspend fun deleteRoom(token: String, roomId: Int): Result<GeneralResponse> {
         return try {
-            // @Body idMap: Map<String, Int>
             val idMap = mapOf("room_id" to roomId)
 
             val response = apiService.deleteRoom("Bearer $token", idMap)
             if (response.status == "success") Result.success(response)
             else Result.failure(Exception(response.message))
+
+        } catch (e: HttpException) {
+            val jsonString = e.response()?.errorBody()?.string()
+
+            val customMessage = try {
+                val jsonObject = JSONObject(jsonString)
+                jsonObject.getString("message")
+            } catch (ex: Exception) {
+                e.message() ?: "Terjadi kesalahan server"
+            }
+
+            Result.failure(Exception(customMessage))
+
         } catch (e: Exception) {
             Result.failure(e)
         }
