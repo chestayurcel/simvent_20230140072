@@ -49,7 +49,6 @@ class RoomViewModel(
 
     fun deleteRoom(id: Int, onSuccess: () -> Unit, onError: (String) -> Unit) {
         viewModelScope.launch {
-            uiState = RoomUiState.Loading
             val token = authRepository.getSessionToken()
 
             if (token != null) {
