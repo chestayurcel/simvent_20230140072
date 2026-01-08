@@ -20,6 +20,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.simvent.viewmodel.DashboardUiState
 import com.example.simvent.viewmodel.DashboardViewModel
 import com.example.simvent.viewmodel.ViewModelFactory
+import androidx.compose.runtime.LaunchedEffect
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -31,6 +32,12 @@ fun DashboardScreen(
     viewModel: DashboardViewModel = viewModel(factory = ViewModelFactory.Factory)
 ) {
     val uiState = viewModel.uiState
+
+    LaunchedEffect(uiState) {
+        if (uiState is DashboardUiState.SessionExpired) {
+            onLogout()
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -99,6 +106,11 @@ fun DashboardScreen(
                     MenuButton(text = "📦 Kelola Aset", onClick = onNavigateToAssets)
                     Spacer(modifier = Modifier.height(12.dp))
                     MenuButton(text = "🏢 Kelola Ruangan", onClick = onNavigateToRooms)
+                }
+                is DashboardUiState.SessionExpired -> {
+                    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        CircularProgressIndicator()
+                    }
                 }
             }
         }
