@@ -9,6 +9,7 @@ import com.example.simvent.data.repository.AssetRepository
 import com.example.simvent.data.repository.AuthRepository
 import com.example.simvent.data.repository.RoomRepository
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 sealed interface DashboardUiState {
     object Loading : DashboardUiState
@@ -20,6 +21,7 @@ sealed interface DashboardUiState {
         val userName: String
     ) : DashboardUiState
     data class Error(val message: String) : DashboardUiState
+    object SessionExpired : DashboardUiState
 }
 
 class DashboardViewModel(
@@ -65,14 +67,28 @@ class DashboardViewModel(
                             userName = name
                         )
                     } else {
-                        uiState = DashboardUiState.Error("Gagal memuat data statistik")
+                        val error = assetsResult.exceptionOrNull() ?: roomsResult.exceptionOrNull()
+                        handleError(error)
                     }
                 } catch (e: Exception) {
-                    uiState = DashboardUiState.Error(e.message ?: "Terjadi kesalahan")
+                    handleError(e)
                 }
             } else {
-                uiState = DashboardUiState.Error("Sesi habis")
+                authRepository.logout() // Hapus sesi lokal
+                uiState = DashboardUiState.SessionExpired
             }
+        }
+    }
+
+    // Fungsi Helper untuk cek error 401
+    private fun handleError(e: Throwable?) {
+        if (e is HttpException && e.code() == 401) {
+            // JIKA ERROR 401 (UNAUTHORIZED)
+            viewModelScope.launch { authRepository.logout() }
+            uiState = DashboardUiState.SessionExpired
+        } else {
+            // Error biasa (internet mati, server down, dll)
+            uiState = DashboardUiState.Error(e?.message ?: "Terjadi kesalahan")
         }
     }
 
