@@ -5,7 +5,7 @@
 ![Backend](https://img.shields.io/badge/Backend-PHP%20Native-777BB4?style=flat&logo=php)
 ![Database](https://img.shields.io/badge/Database-MySQL-4479A1?style=flat&logo=mysql)
 
-**SIMVENT** adalah aplikasi Android berbasis *native* yang dirancang untuk memudahkan proses pencatatan, pemantauan, dan pengelolaan aset inventaris di sebuah instansi. Aplikasi ini dibangun menggunakan **Kotlin** dengan antarmuka modern **Jetpack Compose** dan arsitektur **MVVM (Model-View-ViewModel)**.
+**SIMVENT** adalah aplikasi Android berbasis *native* yang dirancang untuk memudahkan proses pencatatan, pemantauan, dan pengelolaan aset inventaris di sebuah sekolah. Aplikasi ini dibangun menggunakan **Kotlin** dengan antarmuka modern **Jetpack Compose** dan arsitektur **MVVM (Model-View-ViewModel)**.
 
 ---
 
