@@ -90,16 +90,16 @@ Pilih salah satu sesuai aplikasi web server yang Anda gunakan:
 
 #### Setup Database (Sama untuk XAMPP & Laragon)
 1.  Buka browser dan akses `phpMyAdmin` (biasanya `http://localhost/phpmyadmin`).
-2.  Buat database baru dengan nama: **`simvent_db`**.
-3.  Import file SQL yang ada di dalam folder backend tadi ke database `simvent_db`.
-4.  Cek koneksi database di file PHP (biasanya `config/database.php`) dan pastikan username/password sesuai (Default XAMPP: root/kosong).
+2.  Buat database baru dengan nama: **`simvent`**.
+3.  Import file SQL yang ada di dalam folder backend tadi ke database `simvent`.
+4.  Cek koneksi database di file PHP dan pastikan username/password sesuai (Default XAMPP: root/kosong).
 
 ### Langkah 3: Setup Android Project
 1.  Buka Android Studio.
 2.  Pilih **Open** dan arahkan ke folder proyek Android (dari branch `master`).
 3.  Cari tahu **IP Address** komputer Anda (Wajib satu jaringan dengan HP):
     * *Windows:* Buka CMD -> ketik `ipconfig` -> salin IPv4 Address.
-4.  Buka file konfigurasi API (misal: `data/network/ApiService.kt`).
+4.  Buka file konfigurasi API (`data/network/ApiConfig.kt`).
 5.  Ubah **BASE_URL** sesuai IP Address Anda:
     ```kotlin
     // Ganti 192.168.x.x dengan IP Laptop Anda
