@@ -1,4 +1,4 @@
-# 📦 SIMVENT (Sistem Inventarisasi Manajemen Aset)
+# 📦 SIMVENT (Sistem Inventarisasi Aset Laboratorium dan Sarana Olahraga Sekolah)
 
 ![Android](https://img.shields.io/badge/Android-Kotlin-green?style=flat&logo=android)
 ![Compose](https://img.shields.io/badge/UI-Jetpack%20Compose-4285F4?style=flat&logo=jetpackcompose)
@@ -31,7 +31,6 @@ Berikut adalah fitur-fitur unggulan yang telah diimplementasikan:
 ### 1. 🔐 Otentikasi & Keamanan
 * **Login Admin:** Menggunakan JWT/Token-based authentication.
 * **Auto Logout:** Sistem otomatis keluar jika token kedaluwarsa atau sesi tidak valid.
-* **Splash Screen:** Tampilan pembuka dengan logo aplikasi.
 
 ### 2. 📊 Dashboard Interaktif
 * Menampilkan ringkasan total aset dan total ruangan.
@@ -61,17 +60,17 @@ Ikuti langkah-langkah berikut untuk menjalankan proyek ini di komputer lokal And
 3.  **Kabel Data / Emulator** Android.
 
 ### Langkah 1: Setup Backend (Server)
-1.  Aktifkan **Apache** dan **MySQL** pada XAMPP.
+1.  Aktifkan **Apache** dan **MySQL** pada LARAGON.
 2.  Buka `phpMyAdmin` dan buat database baru bernama `simvent_db`.
 3.  Import file SQL database (biasanya `simvent_db.sql`) ke dalam database tersebut.
-4.  Pastikan folder API PHP Anda (`simvent-api`) tersimpan di folder `htdocs`.
+4.  Pastikan folder API PHP Anda (`simvent-api`) tersimpan di folder `www`.
 5.  **PENTING:** Cari tahu IP Address laptop Anda.
     * *Windows:* Buka CMD -> ketik `ipconfig` -> salin IPv4 Address (misal: `192.168.1.10`).
 
 ### Langkah 2: Setup Android Project
 1.  Clone repositori ini atau download ZIP.
 2.  Buka proyek di **Android Studio**.
-3.  Buka file konfigurasi API (biasanya di `data/network/ApiService.kt` atau `RetrofitClient.kt`).
+3.  Buka file konfigurasi API (di `data/network/ApiService.kt`).
 4.  Ubah **BASE_URL** sesuai IP Address laptop Anda:
     ```kotlin
     // Jangan gunakan "localhost", gunakan IP Address LAN
@@ -91,7 +90,3 @@ Ikuti langkah-langkah berikut untuk menjalankan proyek ini di komputer lokal And
 **Chesta Yurcel Zebada**
 
 Dikembangkan sebagai proyek akhir mata kuliah Pengembangan Aplikasi Mobile (PAM) Jurusan Teknologi Informasi Universitas Muhammadiyah Yogyakarta.
-
----
-
-*Dibuat dengan ❤️ menggunakan Kotlin & Jetpack Compose.*
