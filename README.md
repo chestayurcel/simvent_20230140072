@@ -102,7 +102,7 @@ Pilih salah satu sesuai aplikasi web server yang Anda gunakan:
     
     ```kotlin
     // Contoh konfigurasi di ApiConfig.kt
-    private const val BASE_URL = "[http://10.0.2.2/simvent-api/](http://10.0.2.2/simvent-api/)"
+    private const val BASE_URL = "http://10.0.2.2/simvent-api/"
     ```
 5.  Klik **Sync Gradle**.
 
@@ -110,6 +110,8 @@ Pilih salah satu sesuai aplikasi web server yang Anda gunakan:
 1.  Sambungkan HP Android atau nyalakan Emulator.
 2.  Klik tombol **Run (▶)** di Android Studio.
 3.  Login menggunakan akun admin yang tersedia di database.
+
+---
 
 ---
 
