@@ -57,17 +57,15 @@ Berikut adalah fitur-fitur unggulan yang telah diimplementasikan:
 
 ## 🚀 Panduan Instalasi & Penggunaan
 
-Ikuti langkah-langkah berikut untuk menjalankan proyek ini di komputer lokal Anda.
-
 ### Prasyarat
 1.  **Android Studio** (Versi terbaru, support Jetpack Compose).
 2.  **Web Server** (XAMPP atau Laragon).
-3.  **Kabel Data / Emulator** Android.
 
 ### Langkah 1: Download Source Code
 1.  Clone repositori ini ke komputer Anda.
 2.  **Untuk Android:** Gunakan kode yang ada di branch `master`.
 3.  **Untuk Backend:** Checkout ke branch `backend` untuk mendapatkan folder API dan file SQL.
+
     ```bash
     git checkout backend
     ```
@@ -89,15 +87,15 @@ Pilih salah satu sesuai aplikasi web server yang Anda gunakan:
 2.  Nyalakan server (Start All) pada Laragon.
 
 #### Setup Database (Sama untuk XAMPP & Laragon)
-1.  Buka browser dan akses `phpMyAdmin` (biasanya `http://localhost/phpmyadmin`).
+1.  Buka browser dan akses `phpMyAdmin` (`http://localhost/phpmyadmin`).
 2.  Buat database baru dengan nama: **`simvent`**.
 3.  Import file SQL yang ada di dalam folder backend tadi ke database `simvent`.
-4.  Cek koneksi database di file PHP dan pastikan username/password sesuai (Default XAMPP: root/kosong).
+4.  Cek koneksi database di file PHP dan pastikan username/password sesuai.
 
 ### Langkah 3: Setup Android Project
 1.  Buka Android Studio.
-2.  Pilih **Open** dan arahkan ke folder proyek Android (dari branch `master`).
-3.  Cari tahu **IP Address** komputer Anda (Wajib satu jaringan dengan HP):
+2.  Pilih **Open** dan arahkan ke folder proyek yang sudah diclone sebelumnya (dari branch `master`).
+3.  Cari tahu **IP Address** komputer Anda:
     * *Windows:* Buka CMD -> ketik `ipconfig` -> salin IPv4 Address.
 4.  Buka file konfigurasi API (`data/network/ApiConfig.kt`).
 5.  Ubah **BASE_URL** sesuai IP Address Anda:
