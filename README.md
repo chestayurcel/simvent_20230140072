@@ -95,15 +95,16 @@ Pilih salah satu sesuai aplikasi web server yang Anda gunakan:
 ### Langkah 3: Setup Android Project
 1.  Buka Android Studio.
 2.  Pilih **Open** dan arahkan ke folder proyek yang sudah diclone sebelumnya (dari branch `master`).
-3.  Cari tahu **IP Address** komputer Anda:
-    * *Windows:* Buka CMD -> ketik `ipconfig` -> salin IPv4 Address.
-4.  Buka file konfigurasi API (`data/network/ApiConfig.kt`).
-5.  Ubah **BASE_URL** sesuai IP Address Anda:
+3.  Buka file konfigurasi API di `data/network/ApiConfig.kt`.
+4.  Pastikan **BASE_URL** sudah sesuai.
+    * **Untuk Emulator:** Gunakan IP `10.0.2.2` (Alias localhost untuk Emulator).
+    * **Untuk HP Fisik:** Ganti dengan IP Address LAN Laptop Anda (misal `192.168.1.x`).
+    
     ```kotlin
-    // Ganti 192.168.x.x dengan IP Laptop Anda
-    const val BASE_URL = "[http://192.168.1.10/simvent-api/](http://192.168.1.10/simvent-api/)"
+    // Contoh konfigurasi di ApiConfig.kt
+    private const val BASE_URL = "[http://10.0.2.2/simvent-api/](http://10.0.2.2/simvent-api/)"
     ```
-6.  Klik **Sync Gradle**.
+5.  Klik **Sync Gradle**.
 
 ### Langkah 4: Jalankan Aplikasi
 1.  Sambungkan HP Android atau nyalakan Emulator.
