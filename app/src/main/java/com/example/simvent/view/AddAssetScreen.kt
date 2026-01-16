@@ -4,6 +4,7 @@ import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -71,6 +72,7 @@ fun AddAssetScreen(
             OutlinedTextField(
                 value = name, onValueChange = { name = it },
                 label = { Text("Nama Barang") },
+                shape = RoundedCornerShape(12.dp),
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(12.dp))
@@ -80,11 +82,13 @@ fun AddAssetScreen(
                     value = qty, onValueChange = { qty = it },
                     label = { Text("Jumlah") },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                    shape = RoundedCornerShape(12.dp),
                     modifier = Modifier.weight(1f)
                 )
                 OutlinedTextField(
                     value = unit, onValueChange = { unit = it },
                     label = { Text("Satuan") },
+                    shape = RoundedCornerShape(12.dp),
                     modifier = Modifier.weight(1f)
                 )
             }
@@ -103,6 +107,7 @@ fun AddAssetScreen(
                     label = { Text("Lokasi Ruangan") },
                     trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                     colors = ExposedDropdownMenuDefaults.outlinedTextFieldColors(),
+                    shape = RoundedCornerShape(12.dp),
                     modifier = Modifier.menuAnchor().fillMaxWidth()
                 )
                 ExposedDropdownMenu(
@@ -144,6 +149,7 @@ fun AddAssetScreen(
                 value = desc, onValueChange = { desc = it },
                 label = { Text("Keterangan (Opsional)") },
                 modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(12.dp),
                 minLines = 2
             )
             Spacer(modifier = Modifier.height(24.dp))

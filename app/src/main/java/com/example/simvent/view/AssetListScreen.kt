@@ -87,7 +87,7 @@ fun AssetListScreen(
             Divider(thickness = 1.dp, color = Color.LightGray)
 
             // BAGIAN LIST DATA
-            Box(modifier = modifier.padding(innerPadding).fillMaxSize()) {
+            Box(modifier = modifier.fillMaxSize()) {
 
                 when (uiState) {
                     is AssetUiState.Loading -> {
@@ -251,47 +251,85 @@ fun AssetCard(
     }
 
     Card(
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
-        modifier = Modifier.fillMaxWidth()
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = 4.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.Top
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = asset.assetName,
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+
+                    // Chip Lokasi (Badge Abu-abu kecil)
+                    Surface(
+                        color = MaterialTheme.colorScheme.surfaceVariant,
+                        shape = RoundedCornerShape(8.dp)
+                    ) {
+                        Text(
+                            text = asset.roomName ?: "Tanpa Ruangan",
+                            fontSize = 12.sp,
+                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                }
+
+                // Tombol Edit/Delete
+                Row {
+                    IconButton(onClick = { onEdit(asset.assetId) }) {
+                        Icon(Icons.Default.Edit, "Edit", tint = Color.Gray)
+                    }
+                    IconButton(onClick = { showDialog = true }) {
+                        Icon(Icons.Default.Delete, "Hapus", tint = MaterialTheme.colorScheme.error)
+                    }
+                }
+            }
+
+            Divider(modifier = Modifier.padding(vertical = 12.dp), color = Color.LightGray.copy(alpha = 0.5f))
+
+            // Footer: Qty & Kondisi
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = asset.assetName,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.weight(1f)
+                    text = "${asset.qty} ${asset.unit}",
+                    fontWeight = FontWeight.Medium,
+                    color = Color.Gray
                 )
 
-                Row {
-                    // Tombol Hapus
-                    IconButton(onClick = { showDialog = true }) {
-                        Icon(Icons.Default.Delete, contentDescription = "Hapus", tint = Color.Red)
-                    }
-                    // Tombol Edit
-                    IconButton(onClick = { onEdit(asset.assetId) }) {
-                        Icon(Icons.Default.Edit, contentDescription = "Edit", tint = Color.Gray)
-                    }
+                // STATUS BADGE (Kapsul Warna)
+                val isGood = asset.condition.equals("Baik", ignoreCase = true)
+                val badgeColor = if (isGood) Color(0xFFE6F4EA) else Color(0xFFFCE8E6) // Background Muda
+                val textColor = if (isGood) Color(0xFF137333) else Color(0xFFC5221F)  // Teks Tua
+
+                Surface(
+                    color = badgeColor,
+                    shape = RoundedCornerShape(50) // Bentuk Kapsul
+                ) {
+                    Text(
+                        text = asset.condition,
+                        color = textColor,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
+                    )
                 }
             }
-
-            Spacer(modifier = Modifier.height(4.dp))
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Text(text = "Qty: ${asset.qty} ${asset.unit}")
-                Text(
-                    text = asset.condition,
-                    color = if (asset.condition == "Baik") Color.Green else Color.Red
-                )
-            }
-            Text(text = "Ruang: ${asset.roomName ?: "-"}", fontSize = 12.sp, color = Color.Gray)
         }
     }
 }
