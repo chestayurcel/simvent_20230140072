@@ -182,7 +182,7 @@ fun StatCard(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .height(110.dp), // Sedikit lebih ramping
+            .height(120.dp),
         shape = RoundedCornerShape(20.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White)
@@ -221,10 +221,10 @@ fun StatCard(
                             tint = color
                         )
                     }
-                    Spacer(modifier = Modifier.width(8.dp))
+                    Spacer(modifier = Modifier.width(10.dp))
                     Text(
                         text = title,
-                        fontSize = 12.sp,
+                        fontSize = 14.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.Gray,
                         lineHeight = 14.sp
@@ -234,7 +234,7 @@ fun StatCard(
                 // Angka Statistik
                 Text(
                     text = count,
-                    fontSize = 28.sp,
+                    fontSize = 35.sp,
                     fontWeight = FontWeight.ExtraBold,
                     color = Color(0xFF2D3142)
                 )
@@ -255,7 +255,8 @@ fun SquareMenuButton(
         onClick = onClick,
         modifier = modifier
             .aspectRatio(1f),
-        shape = RoundedCornerShape(16.dp),
+        shape = RoundedCornerShape(20.dp),
+        elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = MaterialTheme.colorScheme.primary
         ),
