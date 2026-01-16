@@ -133,7 +133,13 @@ fun DashboardScreen(
                         )
                     }
 
-                    Spacer(modifier = Modifier.height(40.dp))
+                    Spacer(modifier = Modifier.height(18.dp))
+
+                    HorizontalDivider(
+                        modifier = Modifier.padding(vertical = 24.dp, horizontal = 8.dp),
+                        thickness = 1.dp,
+                        color = Color.LightGray.copy(alpha = 0.5f)
+                    )
 
                     // 3. MENU UTAMA
                     Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
