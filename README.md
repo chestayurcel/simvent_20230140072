@@ -55,6 +55,43 @@ Berikut adalah fitur-fitur unggulan yang telah diimplementasikan:
 
 ---
 
+## 📸 Tampilan Aplikasi (Screenshots)
+
+Berikut adalah antarmuka aplikasi SIMVENT.
+
+<table style="border-collapse: collapse; border: none;">
+  <tr>
+    <td align="center" width="33%">
+      <img src="https://github.com/user-attachments/assets/43b59026-a185-40ea-b90f-77e913d85b3f" alt="Login Screen" width="100%">
+      <br><b>Halaman Login</b>
+    </td>
+    <td align="center" width="33%">
+      <img src="https://github.com/user-attachments/assets/fd14eca5-97bb-4c07-a213-107697b23744" alt="Dashboard" width="100%">
+      <br><b>Dashboard Statistik</b>
+    </td>
+    <td align="center" width="33%">
+      <img src="https://github.com/user-attachments/assets/81a70dba-4f9f-4140-8cf5-a34ed949c000" alt="Daftar Aset" width="100%">
+      <br><b>Daftar Aset & Search</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <img src="https://github.com/user-attachments/assets/57ec8d7b-ee8a-46ed-a6fa-90c093b68757" alt="Tambah Aset" width="100%">
+      <br><b>Form Tambah/Edit Aset</b>
+    </td>
+    <td align="center" width="33%">
+      <img src="https://github.com/user-attachments/assets/e96e1bd4-23e9-4d5c-aac7-fc7ddb41c080" alt="Daftar Ruangan" width="100%">
+      <br><b>Manajemen Ruangan</b>
+    </td>
+    <td align="center" width="33%">
+      <img src="https://github.com/user-attachments/assets/21b208d3-b06e-4780-97c9-8d6a8f119485" alt="Tambah Ruangan" width="100%">
+      <br><b>Form Tambah/Edit Ruangan</b>
+    </td>
+  </tr>
+</table>
+
+---
+
 ## 🚀 Panduan Instalasi & Penggunaan
 
 ### Prasyarat
@@ -110,8 +147,6 @@ Pilih salah satu sesuai aplikasi web server yang Anda gunakan:
 1.  Sambungkan HP Android atau nyalakan Emulator.
 2.  Klik tombol **Run (▶)** di Android Studio.
 3.  Login menggunakan akun admin yang tersedia di database.
-
----
 
 ---
 
